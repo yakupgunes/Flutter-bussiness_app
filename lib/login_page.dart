@@ -114,11 +114,23 @@ class _LoginPageState extends State<LoginPage> {
                     "Üye değil misiniz?",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  Text(
-                    " Şimdi üye olun!",
+                  InkWell(
+                    child: Text(
+                      "Şimdi üyelik isteyin!",
+                      style: TextStyle(
+                          color: Colors.blue,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15.0),
+                    ),
+                    onTap: () {
+                      setState(() {});
+                    },
+                  ),
+                  /*Text(
+                    "Şimdi üyelik isteyin!",
                     style: TextStyle(
                         color: Colors.blue, fontWeight: FontWeight.bold),
-                  )
+                  )*/
                 ],
               ),
             ],

@@ -1,5 +1,8 @@
 // ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures, prefer_const_literals_to_create_immutables, unused_field, avoid_print, prefer_typing_uninitialized_variables, sort_child_properties_last, unnecessary_const, unnecessary_new, prefer_final_fields
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_apss/iade.dart';
 
 class SellingPage extends StatefulWidget {
   const SellingPage({super.key});
@@ -10,74 +13,98 @@ class SellingPage extends StatefulWidget {
 
 class _SellingPageState extends State<SellingPage> {
   var selectedType;
+  bool _iadeVarMi = false;
   final _formKey = GlobalKey<FormState>();
   List<String> _marka = <String>["Atiker", "Varta", "Mutlu ", "İnci", "Bosch"];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white,
         appBar: AppBar(
-          leading: IconButton(
-              icon: Icon(
-                Icons.alarm,
-                color: Colors.white,
-              ),
-              onPressed: () {}),
-          title: Container(
-            alignment: Alignment.center,
-            child: Text(
-              "Satış/İade",
-              style: TextStyle(
-                color: Colors.white,
-              ),
+          centerTitle: true,
+          backgroundColor: Colors.amber,
+          title: Text(
+            "Satış/İade",
+            style: TextStyle(
+              color: Colors.white,
             ),
           ),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(
-                Icons.alarm,
-                size: 20.0,
-                color: Colors.white,
-              ),
-              onPressed: null,
-            ),
-          ],
         ),
         body: Form(
           key: _formKey,
           autovalidateMode: AutovalidateMode.always,
-          // ignore: unnecessary_new
           child: new ListView(
             padding: const EdgeInsets.symmetric(horizontal: 15.0),
             children: <Widget>[
-              SizedBox(height: 20.0),
+              SizedBox(height: 15.0),
               TextFormField(
+                cursorColor: Colors.black,
+                style: TextStyle(color: Colors.black),
+                keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                  // ignore: unnecessary_const
+                  border: InputBorder.none,
+                  labelStyle: TextStyle(color: Colors.black),
+                  hintStyle: TextStyle(color: Colors.black),
                   icon: const Icon(
-                    Icons.alarm,
-                    color: Color(0xff11b719),
+                    Icons.currency_lira,
+                    color: Colors.black,
                   ),
                   hintText: 'Fiyat Giriniz',
                   labelText: 'Fiyat',
                 ),
               ),
-              SizedBox(height: 20.0),
+              SizedBox(height: 15.0),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Icon(
-                    Icons.alarm,
+                    Icons.person_search,
                     size: 25.0,
-                    color: Color(0xff11b719),
+                    color: Colors.black,
                   ),
-                  SizedBox(width: 50.0),
+                  SizedBox(width: 10.0),
                   DropdownButton(
                     items: _marka
                         .map((value) => DropdownMenuItem(
                               child: Text(
                                 value,
-                                style: TextStyle(color: Color(0xff11b719)),
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              value: value,
+                            ))
+                        .toList(),
+                    onChanged: (selectedMarkaType) {
+                      print('$selectedMarkaType');
+                      setState(() {
+                        selectedType = selectedMarkaType;
+                      });
+                    },
+                    value: selectedType,
+                    isExpanded: false,
+                    hint: Text(
+                      'Satış Personeli',
+                      style: TextStyle(color: Colors.black),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 15.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  Icon(
+                    Icons.add_business,
+                    size: 25.0,
+                    color: Colors.black,
+                  ),
+                  SizedBox(width: 10.0),
+                  DropdownButton(
+                    items: _marka
+                        .map((value) => DropdownMenuItem(
+                              child: Text(
+                                value,
+                                style: TextStyle(color: Colors.black),
                               ),
                               value: value,
                             ))
@@ -92,12 +119,36 @@ class _SellingPageState extends State<SellingPage> {
                     isExpanded: false,
                     hint: Text(
                       'Marka Seçiniz',
-                      style: TextStyle(color: Color(0xff11b719)),
+                      style: TextStyle(color: Colors.black),
                     ),
-                  )
+                  ),
                 ],
               ),
-              SizedBox(height: 40.0),
+              SizedBox(height: 15.0),
+              InkWell(
+                child: Text(
+                  "İade var mı?",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 20),
+                ),
+                onTap: () {
+                  setState(() {});
+                },
+              ),
+              /*CheckboxListTile(
+                activeColor: Colors.black,
+                value: _iadeVarMi,
+                onChanged: (value) {
+                  setState(() {
+                    _iadeVarMi = !_iadeVarMi;
+                  });
+                },
+                title: Text(
+                  "İade var mı?",
+                  style: TextStyle(color: Colors.black),
+                  textAlign: TextAlign.center,
+                ),
+              ),*/
               /*StreamBuilder<QuerySnapshot>(
                   stream: FirebaseFirestore.instance
                       .collection("personel")
@@ -141,7 +192,7 @@ class _SellingPageState extends State<SellingPage> {
                     }
                   }),*/
               SizedBox(
-                height: 150.0,
+                height: 30.0,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -157,7 +208,7 @@ class _SellingPageState extends State<SellingPage> {
                         SnackBar(
                           backgroundColor: Colors.amber,
                           content: Text(
-                            "Yapılan Satış",
+                            "Yapılan Satış: $selectedType",
                             style: TextStyle(fontSize: 24),
                           ),
                         ),
@@ -168,7 +219,10 @@ class _SellingPageState extends State<SellingPage> {
                       foregroundColor: Colors.black,
                       backgroundColor: Colors.amber,
                     ),
-                    child: Text("Kaydet"),
+                    child: Text(
+                      "Satışı Onayla",
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ),
                 ],
               ),
