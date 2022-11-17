@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:flutter_apss/home_page.dart';
+import 'package:flutter_apss/selling_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                         await Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const HomePage(),
+                            builder: (context) => const SellingPage(),
                           ),
                         );
                         setState(() {});
