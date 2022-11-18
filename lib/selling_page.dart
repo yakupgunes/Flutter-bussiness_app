@@ -132,7 +132,52 @@ class _SellingPageState extends State<SellingPage> {
                 setState(() {});
               },
             ),
-            /*CheckboxListTile(
+            SizedBox(
+              height: 30.0,
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {});
+                    bool validate = _formKey.currentState!.validate();
+                    if (validate) {
+                      _formKey.currentState!.save();
+                    }
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.deepPurple,
+                        content: Text(
+                          "Yapılan satış: $selectedType",
+                          style: TextStyle(fontSize: 24),
+                        ),
+                      ),
+                    );
+                    _formKey.currentState!.reset();
+                  },
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.deepPurple,
+                  ),
+                  child: Text(
+                    "Satışı Onayla",
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+//Firebase sonrasi bakilacak.
+
+/*CheckboxListTile(
                 activeColor: Colors.black,
                 value: _iadeVarMi,
                 onChanged: (value) {
@@ -188,44 +233,3 @@ class _SellingPageState extends State<SellingPage> {
                       );
                     }
                   }),*/
-            SizedBox(
-              height: 30.0,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {});
-                    bool validate = _formKey.currentState!.validate();
-                    if (validate) {
-                      _formKey.currentState!.save();
-                    }
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        backgroundColor: Colors.amber,
-                        content: Text(
-                          "Yapılan satış: $selectedType",
-                          style: TextStyle(fontSize: 24),
-                        ),
-                      ),
-                    );
-                    _formKey.currentState!.reset();
-                  },
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.deepPurple,
-                  ),
-                  child: Text(
-                    "Satışı Onayla",
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
