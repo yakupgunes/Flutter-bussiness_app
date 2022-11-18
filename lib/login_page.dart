@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
               SizedBox(height: 10),
               Text(
-                "Devam etmek için lütfen giriş yapın.",
+                "Devam etmek için lütfen giriş yapınız.",
                 style: TextStyle(
                   fontSize: 20,
                 ),
@@ -151,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Text(
                       "Şimdi üyelik isteyin!",
                       style: TextStyle(
-                          color: Colors.blue,
+                          color: Colors.deepPurple,
                           fontWeight: FontWeight.bold,
                           fontSize: 15.0),
                     ),

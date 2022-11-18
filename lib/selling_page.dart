@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures, prefer_const_literals_to_create_immutables, unused_field, avoid_print, prefer_typing_uninitialized_variables, sort_child_properties_last, unnecessary_const, unnecessary_new, prefer_final_fields
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SellingPage extends StatefulWidget {
   const SellingPage({super.key});
@@ -13,18 +14,32 @@ class _SellingPageState extends State<SellingPage> {
   bool _iadeVarMi = false;
   final _formKey = GlobalKey<FormState>();
   List<String> _marka = <String>["Atiker", "Varta", "Mutlu ", "İnci", "Bosch"];
+  List<String> _personel = <String>[
+    "Ali",
+    "Mert",
+    "Mehmet",
+    "Alper",
+    "Melek",
+    "Ayşe",
+    "Zehra",
+    "Gülsüm",
+    "Ahmet",
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
+        elevation: 2,
+        leading: BackButton(color: Colors.deepPurple),
         centerTitle: true,
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: Colors.grey[300],
         title: Text(
           "Satış/İade",
-          style: TextStyle(
-            color: Colors.white,
+          style: GoogleFonts.bebasNeue(
+            fontSize: 30,
+            color: Colors.black,
           ),
         ),
       ),
@@ -34,7 +49,36 @@ class _SellingPageState extends State<SellingPage> {
         child: new ListView(
           padding: const EdgeInsets.symmetric(horizontal: 15.0),
           children: <Widget>[
+            SizedBox(height: 25.0),
+            Text(
+              "Satış",
+              textAlign: TextAlign.left,
+              style: (GoogleFonts.bebasNeue(
+                fontSize: 30,
+                color: Colors.black,
+              )),
+            ),
             SizedBox(height: 15.0),
+            /*Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 1.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.grey[300],
+                  border: Border.all(color: Colors.white),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 1.0),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      icon: Icon(Icons.currency_lira),
+                      border: InputBorder.none,
+                      hintText: "Ürün fiyatını giriniz.",
+                    ),
+                  ),
+                ),
+              ),
+            ),*/
             TextFormField(
               cursorColor: Colors.black,
               style: TextStyle(color: Colors.black),
@@ -45,31 +89,33 @@ class _SellingPageState extends State<SellingPage> {
                 hintStyle: TextStyle(color: Colors.black),
                 icon: const Icon(
                   Icons.currency_lira,
-                  color: Colors.black,
+                  color: Colors.deepPurple,
                 ),
-                hintText: 'Fiyat Giriniz',
+                hintText: 'Ürün fiyatı giriniz.',
                 labelText: 'Fiyat',
               ),
             ),
-            SizedBox(height: 15.0),
+            SizedBox(height: 5.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Icon(
                   Icons.person_search,
                   size: 25.0,
-                  color: Colors.black,
+                  color: Colors.deepPurple,
                 ),
                 SizedBox(width: 10.0),
                 DropdownButton(
-                  items: _marka
-                      .map((value) => DropdownMenuItem(
-                            child: Text(
-                              value,
-                              style: TextStyle(color: Colors.black),
-                            ),
-                            value: value,
-                          ))
+                  items: _personel
+                      .map(
+                        (value) => DropdownMenuItem(
+                          child: Text(
+                            value,
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          value: value,
+                        ),
+                      )
                       .toList(),
                   onChanged: (selectedMarkaType) {
                     print('$selectedMarkaType');
@@ -80,7 +126,7 @@ class _SellingPageState extends State<SellingPage> {
                   value: selectedType,
                   isExpanded: false,
                   hint: Text(
-                    'Satış Personeli',
+                    'Satış temsilcisini seçiniz.',
                     style: TextStyle(color: Colors.black),
                   ),
                 ),
@@ -93,7 +139,7 @@ class _SellingPageState extends State<SellingPage> {
                 Icon(
                   Icons.add_business,
                   size: 25.0,
-                  color: Colors.black,
+                  color: Colors.deepPurple,
                 ),
                 SizedBox(width: 10.0),
                 DropdownButton(
@@ -115,27 +161,123 @@ class _SellingPageState extends State<SellingPage> {
                   value: selectedType,
                   isExpanded: false,
                   hint: Text(
-                    'Marka Seçiniz',
+                    'Ürün markasını seçiniz.',
                     style: TextStyle(color: Colors.black),
                   ),
                 ),
               ],
             ),
+            SizedBox(height: 25.0),
+            Text(
+              "İade",
+              textAlign: TextAlign.left,
+              style: (GoogleFonts.bebasNeue(
+                fontSize: 30,
+                color: Colors.black,
+              )),
+            ),
             SizedBox(height: 15.0),
-            InkWell(
-              child: Text(
-                "İade var mı?",
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Icon(
+                  Icons.cached,
+                  size: 25.0,
+                  color: Colors.deepPurple,
+                ),
+                SizedBox(width: 10.0),
+                DropdownButton(
+                  items: _marka
+                      .map((value) => DropdownMenuItem(
+                            child: Text(
+                              value,
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            value: value,
+                          ))
+                      .toList(),
+                  onChanged: (selectedMarkaType) {
+                    print('$selectedMarkaType');
+                    setState(() {
+                      selectedType = selectedMarkaType;
+                    });
+                  },
+                  value: selectedType,
+                  isExpanded: false,
+                  hint: Text(
+                    'İade ürün markasını seçiniz.',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 5.0),
+            TextFormField(
+              cursorColor: Colors.black,
+              style: TextStyle(color: Colors.black),
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                labelStyle: TextStyle(color: Colors.black),
+                hintStyle: TextStyle(color: Colors.black),
+                icon: const Icon(
+                  Icons.currency_lira,
+                  color: Colors.deepPurple,
+                ),
+                hintText: 'İade ürün fiyatını giriniz.',
+                labelText: 'İade fiyatı',
               ),
-              onTap: () {
-                setState(() {});
-              },
             ),
             SizedBox(
               height: 30.0,
             ),
-            Column(
+            SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  shadowColor: Colors.black,
+                  backgroundColor: Colors.deepPurple,
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                  minimumSize: Size(400, 60),
+                ),
+                onPressed: () {
+                  setState(() {});
+                  bool validate = _formKey.currentState!.validate();
+                  if (validate) {
+                    _formKey.currentState!.save();
+                  }
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      behavior: SnackBarBehavior.floating,
+                      margin: EdgeInsets.only(bottom: 3),
+                      backgroundColor: Colors.deepPurple,
+                      content: Text(
+                        "Satış eklendi!",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 24,
+                        ),
+                      ),
+                    ),
+                  );
+                  _formKey.currentState!.reset();
+                },
+                child: Text(
+                  "Satışı Onayla",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+            ),
+            //Satış butonu
+            /*Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 ElevatedButton(
@@ -166,7 +308,7 @@ class _SellingPageState extends State<SellingPage> {
                   ),
                 ),
               ],
-            ),
+            ),*/
           ],
         ),
       ),
