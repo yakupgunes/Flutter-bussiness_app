@@ -78,6 +78,39 @@ class _LoginPageState extends State<LoginPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shadowColor: Colors.black,
+                      backgroundColor: Colors.deepPurple,
+                      elevation: 10,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                      minimumSize: Size(400, 60),
+                    ),
+                    onPressed: () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const SellingPage(),
+                        ),
+                      );
+                      setState(() {});
+                    },
+                    child: Text(
+                      "Giriş",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              /*Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Container(
                   padding: EdgeInsets.all(20),
                   decoration: BoxDecoration(
                     color: Colors.deepPurple,
@@ -105,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-              ),
+              ),*/
               SizedBox(height: 20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -126,11 +159,6 @@ class _LoginPageState extends State<LoginPage> {
                       setState(() {});
                     },
                   ),
-                  /*Text(
-                    "Şimdi üyelik isteyin!",
-                    style: TextStyle(
-                        color: Colors.blue, fontWeight: FontWeight.bold),
-                  )*/
                 ],
               ),
             ],
