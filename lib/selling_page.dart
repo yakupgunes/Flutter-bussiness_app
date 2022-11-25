@@ -1,20 +1,35 @@
-// ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures, prefer_const_literals_to_create_immutables, unused_field, avoid_print, prefer_typing_uninitialized_variables, sort_child_properties_last, unnecessary_const, unnecessary_new, prefer_final_fields
+// ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures, prefer_const_literals_to_create_immutables, unused_field, avoid_print, prefer_typing_uninitialized_variables, sort_child_properties_last, unnecessary_const, unnecessary_new, prefer_final_fields, use_build_context_synchronously, unused_local_variable, unnecessary_string_interpolations, unnecessary_brace_in_string_interps
 import 'package:flutter/material.dart';
+import 'package:flutter_apss/sales_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:uuid/uuid.dart';
+
+import 'class.dart';
+import 'variables.dart';
 
 class SellingPage extends StatefulWidget {
-  const SellingPage({super.key});
+  final int? id;
+  const SellingPage({Key? key, this.id}) : super(key: key);
 
   @override
   State<SellingPage> createState() => _SellingPageState();
 }
 
 class _SellingPageState extends State<SellingPage> {
-  var selectedType;
-  bool _iadeVarMi = false;
   final _formKey = GlobalKey<FormState>();
-  List<String> _marka = <String>["Atiker", "Varta", "Mutlu ", "İnci", "Bosch"];
-  List<String> _personel = <String>[
+  var id;
+  late String personel, marka, iadeMarka;
+  late int fiyat, iadeFiyat;
+  /*var selectedType;
+  var selectedPersonelType;
+  var selectedMarkaType;
+  var selectedIadeType;
+  final _marka = ["Atiker", "Varta", "Mutlu ", "İnci", "Bosch"];
+  bool _iadeVarMi = false;
+  String personelIsmi = "Ali";
+  String markaIsmi = "Atiker";
+  String iadeMarkaIsmi = "Atiker";
+  List<String> _personel = [
     "Ali",
     "Mert",
     "Mehmet",
@@ -24,7 +39,7 @@ class _SellingPageState extends State<SellingPage> {
     "Zehra",
     "Gülsüm",
     "Ahmet",
-  ];
+  ];*/
 
   @override
   Widget build(BuildContext context) {
@@ -32,9 +47,9 @@ class _SellingPageState extends State<SellingPage> {
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         elevation: 2,
-        leading: BackButton(color: Colors.deepPurple),
+        leading: BackButton(color: Colors.white),
         centerTitle: true,
-        backgroundColor: Colors.grey[300],
+        backgroundColor: Colors.deepPurple,
         title: Text(
           "Satış/İade",
           style: GoogleFonts.bebasNeue(
@@ -59,6 +74,7 @@ class _SellingPageState extends State<SellingPage> {
               )),
             ),
             SizedBox(height: 15.0),
+            //BU DA KULLANILABİLİR
             /*Padding(
               padding: const EdgeInsets.symmetric(horizontal: 1.0),
               child: Container(
@@ -91,12 +107,55 @@ class _SellingPageState extends State<SellingPage> {
                   Icons.currency_lira,
                   color: Colors.deepPurple,
                 ),
-                hintText: 'Ürün fiyatı giriniz.',
+                hintText: 'Ürün fiyatını giriniz.',
                 labelText: 'Fiyat',
               ),
+              onSaved: (deger) {
+                fiyat = int.parse(deger ?? "");
+              },
             ),
             SizedBox(height: 5.0),
-            Row(
+            TextFormField(
+              cursorColor: Colors.black,
+              style: TextStyle(color: Colors.black),
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                labelStyle: TextStyle(color: Colors.black),
+                hintStyle: TextStyle(color: Colors.black),
+                icon: const Icon(
+                  Icons.person_search,
+                  color: Colors.deepPurple,
+                ),
+                hintText: 'Satış temsilcisini giriniz',
+                labelText: 'Temsilci',
+              ),
+              onSaved: (deger) {
+                personel = deger!;
+              },
+            ),
+            SizedBox(height: 5.0),
+            TextFormField(
+              cursorColor: Colors.black,
+              style: TextStyle(color: Colors.black),
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                labelStyle: TextStyle(color: Colors.black),
+                hintStyle: TextStyle(color: Colors.black),
+                icon: const Icon(
+                  Icons.add_business,
+                  color: Colors.deepPurple,
+                ),
+                hintText: 'Ürün markasını giriniz.',
+                labelText: 'Marka',
+              ),
+              onSaved: (deger) {
+                marka = deger!;
+              },
+            ),
+
+            //DROPDOWNBUTTONA DÖNÜLEBİLİR.
+
+            /*Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Icon(
@@ -106,6 +165,18 @@ class _SellingPageState extends State<SellingPage> {
                 ),
                 SizedBox(width: 10.0),
                 DropdownButton(
+                  value: personelIsmi,
+                  onChanged: (value) {
+                    setState(() {
+                      personelIsmi = value.toString();
+                    });
+                  },
+                  items: _personel.map((itemone) {
+                    return DropdownMenuItem(
+                        value: itemone, child: Text(itemone));
+                  }).toList(),
+                ),
+                /*DropdownButton(
                   items: _personel
                       .map(
                         (value) => DropdownMenuItem(
@@ -117,19 +188,19 @@ class _SellingPageState extends State<SellingPage> {
                         ),
                       )
                       .toList(),
-                  onChanged: (selectedMarkaType) {
-                    print('$selectedMarkaType');
+                  onChanged: (selectedPersonelType) {
+                    print('$selectedPersonelType');
                     setState(() {
-                      selectedType = selectedMarkaType;
+                      selectedPersonelType = selectedPersonelType;
                     });
                   },
-                  value: selectedType,
+                  value: selectedPersonelType, //selectedType
                   isExpanded: false,
                   hint: Text(
                     'Satış temsilcisini seçiniz.',
                     style: TextStyle(color: Colors.black),
                   ),
-                ),
+                ),*/
               ],
             ),
             SizedBox(height: 15.0),
@@ -143,6 +214,18 @@ class _SellingPageState extends State<SellingPage> {
                 ),
                 SizedBox(width: 10.0),
                 DropdownButton(
+                  value: markaIsmi,
+                  onChanged: (value) {
+                    setState(() {
+                      markaIsmi = value.toString();
+                    });
+                  },
+                  items: _marka.map((itemone) {
+                    return DropdownMenuItem(
+                        value: itemone, child: Text(itemone));
+                  }).toList(),
+                ),
+                /*DropdownButton(
                   items: _marka
                       .map((value) => DropdownMenuItem(
                             child: Text(
@@ -158,15 +241,15 @@ class _SellingPageState extends State<SellingPage> {
                       selectedType = selectedMarkaType;
                     });
                   },
-                  value: selectedType,
+                  value: selectedMarkaType, //selectedType
                   isExpanded: false,
                   hint: Text(
                     'Ürün markasını seçiniz.',
                     style: TextStyle(color: Colors.black),
                   ),
-                ),
+                ),*/
               ],
-            ),
+            ),*/
             SizedBox(height: 25.0),
             Text(
               "İade",
@@ -177,7 +260,29 @@ class _SellingPageState extends State<SellingPage> {
               )),
             ),
             SizedBox(height: 15.0),
-            Row(
+            TextFormField(
+              cursorColor: Colors.black,
+              style: TextStyle(color: Colors.black),
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                labelStyle: TextStyle(color: Colors.black),
+                hintStyle: TextStyle(color: Colors.black),
+                icon: const Icon(
+                  Icons.cached,
+                  color: Colors.deepPurple,
+                ),
+                hintText: 'İade ürün markasını giriniz.',
+                labelText: 'İade marka',
+              ),
+              onSaved: (deger) {
+                iadeMarka = deger!;
+              },
+            ),
+            SizedBox(height: 5.0),
+
+            //DROPDOWNBUTTONA DÖNÜLEBİLİR.
+
+            /*Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Icon(
@@ -187,6 +292,18 @@ class _SellingPageState extends State<SellingPage> {
                 ),
                 SizedBox(width: 10.0),
                 DropdownButton(
+                  value: iadeMarkaIsmi,
+                  onChanged: (value) {
+                    setState(() {
+                      iadeMarkaIsmi = value.toString();
+                    });
+                  },
+                  items: _marka.map((itemone) {
+                    return DropdownMenuItem(
+                        value: itemone, child: Text(itemone));
+                  }).toList(),
+                ),
+                /*DropdownButton(
                   items: _marka
                       .map((value) => DropdownMenuItem(
                             child: Text(
@@ -196,21 +313,21 @@ class _SellingPageState extends State<SellingPage> {
                             value: value,
                           ))
                       .toList(),
-                  onChanged: (selectedMarkaType) {
-                    print('$selectedMarkaType');
+                  onChanged: (selectedIadeType) {
+                    print('$selectedIadeType');
                     setState(() {
-                      selectedType = selectedMarkaType;
+                      selectedType = selectedIadeType;
                     });
                   },
-                  value: selectedType,
+                  value: selectedIadeType, //selectedType,
                   isExpanded: false,
                   hint: Text(
                     'İade ürün markasını seçiniz.',
                     style: TextStyle(color: Colors.black),
                   ),
-                ),
+                ),*/
               ],
-            ),
+            ),*/
             SizedBox(height: 5.0),
             TextFormField(
               cursorColor: Colors.black,
@@ -225,8 +342,11 @@ class _SellingPageState extends State<SellingPage> {
                   color: Colors.deepPurple,
                 ),
                 hintText: 'İade ürün fiyatını giriniz.',
-                labelText: 'İade fiyatı',
+                labelText: 'İade fiyat',
               ),
+              onSaved: (deger) {
+                iadeFiyat = int.parse(deger ?? "");
+              },
             ),
             SizedBox(
               height: 30.0,
@@ -245,10 +365,47 @@ class _SellingPageState extends State<SellingPage> {
                   minimumSize: Size(400, 60),
                 ),
                 onPressed: () {
-                  setState(() {});
+                  setState(() {
+                    const uuid = Uuid();
+                    id = uuid.v1();
+                  });
                   bool validate = _formKey.currentState!.validate();
                   if (validate) {
                     _formKey.currentState!.save();
+                  }
+                  String result =
+                      "ID:$id\nFiyat:$fiyat\nPersonel:$personel\nMarka:$marka\nİade Marka:$iadeMarka\nİade Fiyat:$iadeFiyat";
+
+                  if (fiyat <= 500) {
+                    views["sm"]!.add(
+                      SatisListesi(
+                        fiyat: fiyat,
+                        personel: "${personel}",
+                        marka: "${marka}",
+                        iadeMarka: "${iadeMarka}",
+                        iadeFiyat: iadeFiyat,
+                      ),
+                    );
+                  } else if (fiyat > 500 && fiyat < 3000) {
+                    views["md"]!.add(
+                      SatisListesi(
+                        fiyat: fiyat,
+                        personel: "${personel}",
+                        marka: "${marka}",
+                        iadeMarka: "${iadeMarka}",
+                        iadeFiyat: iadeFiyat,
+                      ),
+                    );
+                  } else {
+                    views["lr"]!.add(
+                      SatisListesi(
+                        fiyat: fiyat,
+                        personel: "${personel}",
+                        marka: "${marka}",
+                        iadeMarka: "${iadeMarka}",
+                        iadeFiyat: iadeFiyat,
+                      ),
+                    );
                   }
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
@@ -275,6 +432,29 @@ class _SellingPageState extends State<SellingPage> {
                   ),
                 ),
               ),
+            ),
+            SizedBox(height: 10),
+            Center(
+              child: Text(
+                "Satışları görmek için tıklayınız.",
+                style: TextStyle(fontSize: 20),
+              ),
+            ),
+            IconButton(
+              icon: Icon(
+                Icons.arrow_forward,
+                color: Colors.deepPurple,
+              ),
+              onPressed: () {
+                setState(() {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SalesPage(),
+                    ),
+                  );
+                });
+              },
             ),
             //Satış butonu
             /*Column(
