@@ -1,5 +1,6 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, prefer_const_constructors
+// ignore_for_file: prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, prefer_const_constructors, unused_field
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_apss/selling_page.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -12,6 +13,24 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  //text controllers
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: _emailController.text.trim(),
+      password: _passwordController.text.trim(),
+    );
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,6 +40,10 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Icon(
+                Icons.person,
+                size: 170,
+              ),
               SizedBox(height: 20),
               Text(
                 "Hoşgeldiniz!",
@@ -34,6 +57,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               SizedBox(height: 50),
+              //e-mail textfield
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
@@ -45,6 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 20.0),
                     child: TextField(
+                      controller: _emailController,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: "Email",
@@ -54,6 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               SizedBox(height: 10),
+              //password textfield
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
@@ -65,6 +91,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 20.0),
                     child: TextField(
+                      controller: _passwordController,
                       obscureText: true,
                       decoration: InputDecoration(
                         border: InputBorder.none,
@@ -75,6 +102,30 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: GestureDetector(
+                  onTap: signIn,
+                  child: Container(
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Colors.deepPurple,
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Center(
+                      child: Text(
+                        "Giriş",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              /*//sign-in button (elevated)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
@@ -107,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                 ),
-              ),
+              ),*/
               /*Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
