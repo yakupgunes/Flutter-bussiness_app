@@ -1,12 +1,12 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, prefer_const_constructors, unused_field
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_apss/selling_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  final VoidCallback showRegisterPage;
+  const LoginPage({super.key, required this.showRegisterPage});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -195,10 +195,11 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Üye değil misiniz?",
+                    "Üye değil misiniz? ",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
-                  InkWell(
+                  GestureDetector(
+                    onTap: widget.showRegisterPage,
                     child: Text(
                       "Şimdi üyelik isteyin!",
                       style: TextStyle(
@@ -206,9 +207,6 @@ class _LoginPageState extends State<LoginPage> {
                           fontWeight: FontWeight.bold,
                           fontSize: 15.0),
                     ),
-                    onTap: () {
-                      setState(() {});
-                    },
                   ),
                 ],
               ),
