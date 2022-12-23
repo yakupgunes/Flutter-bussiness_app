@@ -1,11 +1,11 @@
 // ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures, prefer_const_literals_to_create_immutables, unused_field, avoid_print, prefer_typing_uninitialized_variables, sort_child_properties_last, unnecessary_const, unnecessary_new, prefer_final_fields, use_build_context_synchronously, unused_local_variable, unnecessary_string_interpolations, unnecessary_brace_in_string_interps
 import 'package:flutter/material.dart';
-import 'package:flutter_apss/sales_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:uuid/uuid.dart';
 
-import 'class.dart';
-import 'variables.dart';
+import '../class.dart';
+import 'sales_page.dart';
+import '../variables.dart';
 
 class SellingPage extends StatefulWidget {
   final int? id;

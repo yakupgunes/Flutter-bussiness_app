@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables, avoid_unnecessary_containers, prefer_const_constructors, unused_field
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_apss/selling_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'forgot_pw_page.dart';
 
 class LoginPage extends StatefulWidget {
   final VoidCallback showRegisterPage;
@@ -57,7 +58,8 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               SizedBox(height: 50),
-              //e-mail textfield
+
+              //E-MAİL TEXTFİELD
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
@@ -72,14 +74,15 @@ class _LoginPageState extends State<LoginPage> {
                       controller: _emailController,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: "Email",
+                        hintText: "E-Posta",
                       ),
                     ),
                   ),
                 ),
               ),
               SizedBox(height: 10),
-              //password textfield
+
+              //PASSWORD TEXTFİELD
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
@@ -102,6 +105,38 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               SizedBox(height: 10),
+
+              //Forgot Password textfield
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return ForgotPasswordPage();
+                            },
+                          ),
+                        );
+                      },
+                      child: Text(
+                        "Şifremi unuttum",
+                        style: TextStyle(
+                            color: Colors.blue,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15.0),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+
+              //GİRİŞ BUTONU
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: GestureDetector(
@@ -114,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     child: Center(
                       child: Text(
-                        "Giriş",
+                        "Giriş Yap",
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
@@ -195,15 +230,15 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "Üye değil misiniz? ",
+                    "Üye değil misiniz?  ",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   GestureDetector(
                     onTap: widget.showRegisterPage,
                     child: Text(
-                      "Şimdi üyelik isteyin!",
+                      "Şimdi üye olun!",
                       style: TextStyle(
-                          color: Colors.deepPurple,
+                          color: Colors.blue,
                           fontWeight: FontWeight.bold,
                           fontSize: 15.0),
                     ),

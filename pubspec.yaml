@@ -38,7 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.2
   google_fonts:
   uuid: ^3.0.7
-  cloud_firestore: ^4.1.0
+  cloud_firestore: ^4.3.0
   firebase_auth: ^4.1.4
 
 

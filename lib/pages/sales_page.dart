@@ -1,9 +1,7 @@
 // ignore_for_file: prefer_final_fields
-
 import 'package:flutter/material.dart';
 import 'package:flutter_apss/variables.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_apss/selling_page.dart';
 
 class SaleList extends StatelessWidget {
   const SaleList({super.key});
