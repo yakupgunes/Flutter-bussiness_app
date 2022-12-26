@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, curly_braces_in_flow_control_structures, prefer_const_literals_to_create_immutables, unused_field, avoid_print, prefer_typing_uninitialized_variables, sort_child_properties_last, unnecessary_const, unnecessary_new, prefer_final_fields, use_build_context_synchronously, unused_local_variable, unnecessary_string_interpolations, unnecessary_brace_in_string_interps
 import 'package:flutter/material.dart';
+import 'package:flutter_apss/pages/home_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:uuid/uuid.dart';
 
@@ -47,7 +48,20 @@ class _SellingPageState extends State<SellingPage> {
       backgroundColor: Colors.grey[300],
       appBar: AppBar(
         elevation: 2,
-        leading: BackButton(color: Colors.white),
+        leading: IconButton(
+          onPressed: () {
+            setState(() {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const HomePage(),
+                ),
+              );
+            });
+          },
+          icon: const Icon(Icons.arrow_back),
+          color: Colors.black,
+        ),
         centerTitle: true,
         backgroundColor: Colors.deepPurple,
         title: Text(

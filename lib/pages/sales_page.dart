@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_final_fields
 import 'package:flutter/material.dart';
+import 'package:flutter_apss/pages/home_page.dart';
+import 'package:flutter_apss/pages/selling_page.dart';
 import 'package:flutter_apss/variables.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -34,13 +36,13 @@ class _SalesPageState extends State<SalesPage>
 
   List<Tab> _tabs = [
     const Tab(
-      text: ("Küçük Ölçekli Satışlar"),
+      text: ("Küçük Satışlar"),
     ),
     const Tab(
-      text: ("Orta Ölçekli Satışlar"),
+      text: ("Orta Satışlar"),
     ),
     const Tab(
-      text: ("Büyük Ölçekli Satışlar"),
+      text: ("Büyük Satışlar"),
     ),
   ];
 
@@ -52,12 +54,13 @@ class _SalesPageState extends State<SalesPage>
         child: Scaffold(
           backgroundColor: Colors.grey[300],
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             bottom: TabBar(
               labelColor: Colors.white,
               tabs: _tabs,
             ),
             title: Text(
-              "Satış Listesi",
+              "SATIŞ LİSTESİ",
               style: GoogleFonts.bebasNeue(
                 fontSize: 30,
                 color: Colors.black,
@@ -66,7 +69,20 @@ class _SalesPageState extends State<SalesPage>
             centerTitle: true,
             backgroundColor: Colors.deepPurple,
             elevation: 2,
-            leading: const BackButton(color: Colors.deepPurple),
+            leading: IconButton(
+              onPressed: () {
+                setState(() {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const SellingPage(),
+                    ),
+                  );
+                });
+              },
+              icon: const Icon(Icons.arrow_back),
+              color: Colors.black,
+            ), //const BackButton(color: Colors.black),
           ),
           body: TabBarView(
             children: [
@@ -88,7 +104,7 @@ class _SalesPageState extends State<SalesPage>
                                     return AlertDialog(
                                       title: const Text("Sil"),
                                       content: const Text(
-                                        "Silinsin mi?",
+                                        "Yapılan satışı silmek istediğinize emin misiniz?",
                                         style: TextStyle(fontSize: 20),
                                       ),
                                       actions: [
@@ -123,16 +139,16 @@ class _SalesPageState extends State<SalesPage>
                       ),
                       title: Text(
                         textAlign: TextAlign.center,
-                        "Ürün fiyatı:"
-                        "${views["sm"]![index].fiyat}\n"
-                        "Personel bilgisi:"
+                        "Ürün fiyatı: "
+                        "${views["sm"]![index].fiyat} TL\n"
+                        "Personel bilgisi: "
                         "${views["sm"]![index].personel}\n"
-                        "Ürün markası:"
+                        "Ürün markası: "
                         "${views["sm"]![index].marka}\n"
-                        "İade ürün markası:"
+                        "İade ürün markası: "
                         "${views["sm"]![index].iadeMarka}\n"
-                        "İade ürün fiyatı:"
-                        "${views["sm"]![index].iadeFiyat}\n",
+                        "İade ürün fiyatı: "
+                        "${views["sm"]![index].iadeFiyat} TL\n",
                         style: const TextStyle(
                           fontSize: 20,
                         ),
@@ -157,7 +173,7 @@ class _SalesPageState extends State<SalesPage>
                                     return AlertDialog(
                                       title: const Text("Sil"),
                                       content: const Text(
-                                        "Silinsin mi?",
+                                        "Yapılan satışı silmek istediğinize emin misiniz?",
                                         style: TextStyle(fontSize: 20),
                                       ),
                                       actions: [
@@ -192,16 +208,16 @@ class _SalesPageState extends State<SalesPage>
                       ),
                       title: Text(
                         textAlign: TextAlign.center,
-                        "Ürün fiyatı:"
-                        "${views["md"]![index].fiyat}\n"
-                        "Personel bilgisi:"
+                        "Ürün fiyatı: "
+                        "${views["md"]![index].fiyat} TL\n"
+                        "Personel bilgisi: "
                         "${views["md"]![index].personel}\n"
-                        "Ürün markası:"
+                        "Ürün markası: "
                         "${views["md"]![index].marka}\n"
-                        "İade ürün markası:"
+                        "İade ürün markası: "
                         "${views["md"]![index].iadeMarka}\n"
-                        "İade ürün fiyatı:"
-                        "${views["md"]![index].iadeFiyat}\n",
+                        "İade ürün fiyatı: "
+                        "${views["md"]![index].iadeFiyat} TL\n",
                         style: const TextStyle(
                           fontSize: 20,
                         ),
@@ -226,7 +242,7 @@ class _SalesPageState extends State<SalesPage>
                                     return AlertDialog(
                                       title: const Text("Sil"),
                                       content: const Text(
-                                        "Silinsin mi?",
+                                        "Yapılan satışı silmek istediğinize emin misiniz?",
                                         style: TextStyle(fontSize: 20),
                                       ),
                                       actions: [
@@ -261,16 +277,16 @@ class _SalesPageState extends State<SalesPage>
                       ),
                       title: Text(
                         textAlign: TextAlign.center,
-                        "Ürün fiyatı:"
-                        "${views["lr"]![index].fiyat}\n"
-                        "Personel bilgisi:"
+                        "Ürün fiyatı: "
+                        "${views["lr"]![index].fiyat} TL\n"
+                        "Personel bilgisi: "
                         "${views["lr"]![index].personel}\n"
-                        "Ürün markası:"
+                        "Ürün markası: "
                         "${views["lr"]![index].marka}\n"
-                        "İade ürün markası:"
+                        "İade ürün markası: "
                         "${views["lr"]![index].iadeMarka}\n"
-                        "İade ürün fiyatı:"
-                        "${views["lr"]![index].iadeFiyat}\n",
+                        "İade ürün fiyatı: "
+                        "${views["lr"]![index].iadeFiyat} TL\n",
                         style: const TextStyle(
                           fontSize: 20,
                         ),
