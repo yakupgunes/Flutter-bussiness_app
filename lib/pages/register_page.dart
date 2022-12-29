@@ -89,7 +89,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               SizedBox(height: 10),
               Text(
-                "Bilgileri girerek kayıt olunuz.",
+                "Bilgileri girerek kayıt olabilirsiniz.",
                 style: TextStyle(
                   fontSize: 20,
                 ),

@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_final_fields
 import 'package:flutter/material.dart';
 import 'package:flutter_apss/pages/home_page.dart';
-import 'package:flutter_apss/pages/selling_page.dart';
 import 'package:flutter_apss/variables.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -69,19 +68,21 @@ class _SalesPageState extends State<SalesPage>
             centerTitle: true,
             backgroundColor: Colors.deepPurple,
             elevation: 2,
-            leading: IconButton(
-              onPressed: () {
-                setState(() {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SellingPage(),
-                    ),
-                  );
-                });
-              },
-              icon: const Icon(Icons.arrow_back),
-              color: Colors.black,
+            leading: GestureDetector(
+              child: IconButton(
+                onPressed: () {
+                  setState(() {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HomePage(),
+                      ),
+                    );
+                  });
+                },
+                icon: const Icon(Icons.arrow_back),
+                color: Colors.black,
+              ),
             ), //const BackButton(color: Colors.black),
           ),
           body: TabBarView(

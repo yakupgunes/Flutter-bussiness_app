@@ -49,6 +49,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: BackButton(color: Colors.black),
+        title: Text(
+          "Şifrenizi Sıfırlayın",
+          style: TextStyle(fontSize: 25, color: Colors.black),
+        ),
         backgroundColor: Colors.deepPurple,
         elevation: 0,
       ),
@@ -82,7 +87,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   controller: _emailController,
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: "Email",
+                    hintText: "E-Posta",
                   ),
                 ),
               ),
